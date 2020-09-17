@@ -82,19 +82,15 @@ const CustomDrawerContentComponent = ({navigation}) => {
       title={item}
       style={{marginTop: 8}}
       onPress={() => {
-        if (
-          navigation?.state?.routes[0] &&
-          navigation?.state?.routes[0].routes[0] &&
-          navigation?.state?.routes[0].routes[0].routeName !== item
-        ) {
-          const resetAction = StackActions.reset({
-            index: 0,
-            actions: [NavigationActions.navigate({routeName: item})],
-          });
-          navigation.dispatch(resetAction);
-        } else {
-          navigation.toggleDrawer();
-        }
+        // if (
+        //   navigation?.state?.routes[0] &&
+        //   navigation?.state?.routes[0].routes[0] &&
+        //   navigation?.state?.routes[0].routes[0].routeName !== item
+        // ) {
+        navigation.navigate(item);
+        // } else {
+        //   navigation.toggleDrawer();
+        // }
       }}
     />
   );
@@ -115,26 +111,26 @@ const CustomDrawerContentComponent = ({navigation}) => {
   );
 };
 
-const Hamburger = ({onPress, style}) => (
-  <TouchableOpacity onPress={onPress} style={style}>
-    <View style={styles.ham} />
-    <View style={styles.ham} />
-    <View style={styles.ham} />
-  </TouchableOpacity>
-);
+// const Hamburger = ({onPress, style}) => (
+//   <TouchableOpacity onPress={onPress} style={style}>
+//     <View style={styles.ham} />
+//     <View style={styles.ham} />
+//     <View style={styles.ham} />
+//   </TouchableOpacity>
+// );
 
 const Root = createStackNavigator(stackRoutes, {
   mode: 'modal',
-  defaultNavigationOptions: ({navigation}) => ({
-    headerLeft: () => (
-      <Hamburger
-        style={styles.headerLeft}
-        onPress={() => {
-          navigation.toggleDrawer();
-        }}
-      />
-    ),
-  }),
+  // defaultNavigationOptions: ({navigation}) => ({
+  //   headerLeft: () => (
+  //     <Hamburger
+  //       style={styles.headerLeft}
+  //       onPress={() => {
+  //         navigation.toggleDrawer();
+  //       }}
+  //     />
+  //   ),
+  // }),
 });
 
 const MyDrawerNavigator = createDrawerNavigator(
